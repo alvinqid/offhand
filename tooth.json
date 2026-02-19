@@ -1,11 +1,11 @@
 {
   "format_version": 3,
   "format_uuid": "f7fb2a2a-7e3f-4014-baa7-a0b8062292bb",
-  "tooth": "github.com/alvinqid/offhand",
+  "tooth": "github.com/alvinqid/waila-mod",
   "version": "1.0.0",
   "info": {
-    "name": "offhand",
-    "description": "mod that makes offhand work",
+    "name": "waila",
+    "description": "What am I looking at",
     "tags": [
       "platform:levilamina",
       "type:mod"
@@ -27,8 +27,8 @@
           "placements": [
             {
               "type": "dir",
-              "src": "offhand/",
-              "dest": "mods/offhand/"
+              "src": "waila/",
+              "dest": "mods/waila/"
             }
           ]
         }

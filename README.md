@@ -1,3 +1,5 @@
-# LeviLamina Mod: Offhand
+# LeviLamina Mod: WAILA
 
-mod that makes offhand work# offhand
+What am I looking at?
+
+mod that can display what you are viewing (block), the next big update is supporting entities
