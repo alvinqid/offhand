@@ -30,7 +30,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     
     return res;
 }
-
+/*
 LL_AUTO_TYPE_INSTANCE_HOOK(
     b,
     HookPriority::Normal,
@@ -121,7 +121,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     
     return res;
 }
-
+*/
 //GeneralSettingsScreenController
 LL_AUTO_TYPE_INSTANCE_HOOK(
     GeneralSettingsScreenControllerCtor,
