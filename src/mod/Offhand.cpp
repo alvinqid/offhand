@@ -29,6 +29,8 @@ LL_AUTO_TYPE_STATIC_HOOK(
     BaseGameVersion const& baseGameVersion,
     Experiments const& experiments
 ) {
+    origin(ctx, itemRegistryRef, baseGameVersion, experiments);
+    
     auto registry = itemRegistryRef._lockRegistry();
     if (!registry) return;
     ItemRegistry* abc = registry.get();
@@ -38,8 +40,6 @@ LL_AUTO_TYPE_STATIC_HOOK(
     {
         pair.second.get()->setAllowOffhand(true);
     }
-    
-    origin(ctx, itemRegistryRef, baseGameVersion, experiments);
 }
 
 bool Offhand::load() {
