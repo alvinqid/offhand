@@ -11,7 +11,7 @@ InGamePackChanger& InGamePackChanger::getInstance() {
 
 //SettingsScreenController
 LL_AUTO_TYPE_INSTANCE_HOOK(
-    SettingsScreenControllerCtor1,
+    a,
     HookPriority::Normal,
     SettingsScreenController,
     &SettingsScreenController::$ctor,
@@ -32,7 +32,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
-    SettingsScreenControllerCtor2,
+    b,
     HookPriority::Normal,
     SettingsScreenController,
     &SettingsScreenController::$ctor,
@@ -54,7 +54,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
-    SettingsScreenControllerCtor3,
+    c,
     HookPriority::Normal,
     SettingsScreenController,
     &SettingsScreenController::$ctor,
@@ -76,7 +76,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
-    SettingsScreenControllerCtor4,
+    d,
     HookPriority::Normal,
     SettingsScreenController,
     &SettingsScreenController::$ctor,
@@ -99,7 +99,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
-    SettingsScreenControllerCtor5,
+    e,
     HookPriority::Normal,
     SettingsScreenController,
     &SettingsScreenController::$ctor,
