@@ -1,11 +1,11 @@
 {
   "format_version": 3,
   "format_uuid": "8f4e3d2c-65a1-4f8b-9c5d-1a2b3c4d5e6f",
-  "tooth": "github.com/alvinqid/InGamePackChanger-mod",
+  "tooth": "github.com/alvinqid/MiniAPI-mod",
   "version": "1.0.0",
   "info": {
-    "name": "InGamePackChanger",
-    "description": "Change Your Resource Packs In Game, As in the java edition",
+    "name": "MiniAPI",
+    "description": "MiniAPI: mods pack(Zoom)",
     "tags": [
       "platform:levilamina",
       "type:mod"
@@ -22,13 +22,13 @@
         {
           "type": "zip",
           "urls": [
-            "https://{{tooth}}/releases/download/v{{version}}/InGamePackChanger.zip"
+            "https://{{tooth}}/releases/download/v{{version}}/MiniAPI.zip"
           ],
           "placements": [
             {
               "type": "dir",
-              "src": "InGamePackChanger/",
-              "dest": "mods/InGamePackChanger/"
+              "src": "MiniAPI/",
+              "dest": "mods/MiniAPI/"
             }
           ]
         }

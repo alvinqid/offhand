@@ -31,7 +31,7 @@ float LevelRendererPlayer_getFov(float currentFov, bool applyEffects) {
 }
 
 float BaseOptions_getSensitivity(float currentSensitivity, unsigned int inputMode) {
-    static float dampen = (100.0f - 90.0f/*configManager->getSensitivityDampen())*/ / 100.0f;
+    static float dampen = (100.0f - 90.0f/*configManager->getSensitivityDampen()*/) / 100.0f;
 
     //static std::string zoomType = configManager->getZoomType();
     //static float duration = configManager->getDuration();
