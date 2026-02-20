@@ -22,13 +22,9 @@ namespace alvinqid {
 class MiniAPI {
 
 public:
-
-    ClientInstance* clientInstance;
-    RemappingLayout* rmpl;
+    ClientInstance* getClientInstance() { return clientInstance; }
     
-    ClientInstance* getClientInstance() const { return clientInstance; }
-    
-    RemappingLayout* getRMPL() const { return rmpl; }
+    RemappingLayout* getRMPL() { return rmpl; }
 
     static MiniAPI& getInstance();
 
@@ -43,6 +39,8 @@ public:
 
 private:
     ll::mod::NativeMod& mSelf;
+    ClientInstance* clientInstance;
+    RemappingLayout* rmpl;
 };
 
 } // namespace alvinqid

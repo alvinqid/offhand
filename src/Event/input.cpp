@@ -13,4 +13,4 @@ void EventInput(Amethyst::InputManager& inputManager) {
         setEnabled(false);
         return Amethyst::InputPassthrough::Consume;
     });
-}
+};
