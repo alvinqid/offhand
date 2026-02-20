@@ -82,8 +82,7 @@ public:
 private:
     InputPassthrough _onButtonStateChange(
         ButtonState state,
-        FocusImpact focus,
-        ClientInstance& client
+        FocusImpact focus
     ) const;
 
     friend class InputManager;
