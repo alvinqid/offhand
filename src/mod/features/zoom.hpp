@@ -8,15 +8,15 @@ namespace alvinqid {
     class Features {
     public:
     
-        void setEnabled(bool state);
+        static void setEnabled(bool state);
         
-        float getSensitivity(float currentSensitivity);
+        static float getSensitivity(float currentSensitivity);
         
-        float getFov(float currentFov, bool applyEffects);
+        static float getFov(float currentFov, bool applyEffects);
         
-        void RegisterCustomInputs(InputManager inputManager);
+        static void RegisterCustomInputs(InputManager inputManager);
     
     private:
-        bool enabled = false;
+        static bool enabled = false;
     }
 } // namespace alvinqid

@@ -2,11 +2,11 @@
 
 namespace alvinqid {
 
-    void Features::setEnabled(bool state) {
+    static void Features::setEnabled(bool state) {
         enabled = state;
     }
 
-    void Features::RegisterCustomInputs(InputManager inputManager) {
+    static void Features::RegisterCustomInputs(InputManager inputManager) {
         InputAction& zoomKeybind =
             inputManager.registerNewInput("zoom", {'C'}, true, KeybindContext::Gameplay);
     
@@ -21,14 +21,14 @@ namespace alvinqid {
         });
     }
     
-    float Features::getFov(float currentFov, bool applyEffects) {
+    static float Features::getFov(float currentFov, bool applyEffects) {
         if(currentFov == 70.0f && !applyEffects) return currentFov;
         if(enabled) return 10.0f;
     
         return currentFov;
     }
     
-    float Features::getSensitivity(float currentSensitivity) {
+    static float Features::getSensitivity(float currentSensitivity) {
         static float dampen = (100.0f - 90.0f) / 100.0f;
         float targetSensitivity = currentSensitivity * dampen;
         

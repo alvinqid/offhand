@@ -6,7 +6,7 @@
 #include <string>
 
 #include "mod/api/InputAction.hpp"
-
+#include "mod/Zoom.hpp"
 #include "mc/client/options/Options.h"
 #include "mc/deps/input/InputHandler.h"
 #include "mc/deps/input/KeyboardInputMapping.h"
