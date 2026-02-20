@@ -18,5 +18,5 @@ namespace alvinqid {
     
     private:
         static bool enabled;
-    }
+    };
 } // namespace alvinqid

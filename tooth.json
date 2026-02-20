@@ -1,10 +1,10 @@
 {
   "format_version": 3,
   "format_uuid": "8f4e3d2c-65a1-4f8b-9c5d-1a2b3c4d5e6f",
-  "tooth": "github.com/alvinqid/MiniAPI-mod",
+  "tooth": "github.com/alvinqid/Zoom-mod",
   "version": "1.0.0",
   "info": {
-    "name": "MiniAPI",
+    "name": "Zoom",
     "description": "MiniAPI: mods pack(Zoom)",
     "tags": [
       "platform:levilamina",
@@ -27,8 +27,8 @@
           "placements": [
             {
               "type": "dir",
-              "src": "MiniAPI/",
-              "dest": "mods/MiniAPI/"
+              "src": "Zoom/",
+              "dest": "mods/Zoom/"
             }
           ]
         }
