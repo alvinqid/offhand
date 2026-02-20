@@ -33,7 +33,8 @@ MiniAPI::InputManager::~InputManager()
                     keymappings.end(),
                     [&](const Keymapping& mapping)
                     {
-                        return mapping.mAction == "key." + action.mActionName;
+                        return mapping.mAction.get()
+                            == ("key." + action.mActionName);
                     });
 
                 keymappings.erase(newEnd, keymappings.end());
@@ -72,7 +73,8 @@ MiniAPI::InputAction& MiniAPI::InputManager::RegisterNewInput(
             Keymapping keymapping(
                 "key." + actionName,
                 defaultKeys,
-                allowRemapping
+                allowRemapping,
+                false // isToggle (wajib di 1.9.5)
             );
 
             layout->mKeymappings.emplace_back(keymapping);
@@ -80,14 +82,20 @@ MiniAPI::InputAction& MiniAPI::InputManager::RegisterNewInput(
         }
     }
 
-    mCustomInputs.emplace_back(actionName, std::move(defaultKeys), allowRemapping, context);
+    mCustomInputs.emplace_back(
+        actionName,
+        std::move(defaultKeys),
+        allowRemapping,
+        context
+    );
 
     auto action = std::make_unique<MiniAPI::InputAction>(actionName);
     auto [newIt, _] = mActions.emplace(hash, std::move(action));
     return *(newIt->second);
 }
 
-MiniAPI::InputAction& MiniAPI::InputManager::GetVanillaInput(const std::string& actionName)
+MiniAPI::InputAction& MiniAPI::InputManager::GetVanillaInput(
+    const std::string& actionName)
 {
     uint32_t hash = StringToNameId("button." + actionName);
 
@@ -111,7 +119,7 @@ MiniAPI::InputPassthrough MiniAPI::InputManager::_handleButtonEvent(
     if (it == mActions.end())
         return InputPassthrough::Passthrough;
 
-    const MiniAPI::InputAction& action = *it->second.get();
+    const MiniAPI::InputAction& action = *(it->second);
     return action._onButtonStateChange(button.state, focus, client);
 }
 
@@ -125,10 +133,12 @@ void MiniAPI::InputManager::createKeyboardAndMouseBinding(
 {
     if (auto layout = inputs->mKeyboardRemappingLayout.lock())
     {
-        Keymapping* mapping = layout->getKeymappingByAction(*keyName);
+        Keymapping* mapping =
+            layout->getKeymappingByAction(*keyName);
+
         if (!mapping) return;
 
-        for (int key : mapping->mKeys)
+        for (int key : mapping->mKeys.get())
         {
             if (!mapping->isAssigned())
                 continue;
@@ -149,12 +159,20 @@ void MiniAPI::InputManager::_registerKeyboardInputs(
 {
     for (auto& input : mCustomInputs)
     {
-        if ((input.mContexts & context) == MiniAPI::KeybindContext::None)
+        if ((input.mContexts & context)
+            == MiniAPI::KeybindContext::None)
             continue;
 
         std::string keyName = "key." + input.mActionName;
         std::string buttonName = "button." + input.mActionName;
 
-        createKeyboardAndMouseBinding(inputs, keyboard, mouse, &buttonName, &keyName);
+        createKeyboardAndMouseBinding(
+            inputs,
+            keyboard,
+            mouse,
+            &buttonName,
+            &keyName,
+            FocusImpact::UI
+        );
     }
 }
