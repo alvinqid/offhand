@@ -1,4 +1,7 @@
-#include "input/InputManager.hpp"
-#include "features/zoom.hpp"
+#pragma once
+
+namespace Amethyst {
+    class InputManager;
+}
 
 void EventInput(Amethyst::InputManager& inputManager);
