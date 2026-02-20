@@ -4,6 +4,10 @@
 #include "mc/client/options/IOptions.h"
 #include "mc/client/renderer/game/LevelRendererPlayer.h"
 
+#include "ll/api/mod/NativeMod.h"
+#include "ll/api/mod/RegisterHelper.h"
+#include "ll/api/memory/Hook.h"
+
 #include <memory>
 
 namespace alvinqid {
@@ -13,9 +17,9 @@ class Zoom {
 public:
     static Zoom& getInstance();
 
-    Zoom() : mSelf(*ll::mod::NativeMod::current()) {}
+    Zoom() : mSelf(*ll::mod::NativeMod::current()) {};
 
-    [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
+    [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; };
 
     bool load();
     bool enable();
@@ -24,9 +28,9 @@ public:
     void setClientInstance(ClientInstance* ptr);
     void setOptions(Options* ptr);
 
-    Options* getOptions() { return mOptions; }
-    ClientInstance* getClientInstance() { return mClientInstance; }
-    RemappingLayout* getRemappingLayout() { return mRemapLayout; }
+    Options* getOptions() { return mOptions; };
+    ClientInstance* getClientInstance() { return mClientInstance; };
+    RemappingLayout* getRemappingLayout() { return mRemapLayout; };
 private:
     ll::mod::NativeMod& mSelf;
     Options* mOptions = nullptr;
