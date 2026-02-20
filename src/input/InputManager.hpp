@@ -19,8 +19,9 @@ namespace Amethyst {
 class InputManager {
 public:
     Options* mOptions;
+    RemappingLayout* mLayout;
     
-    InputManager(Options* opts);
+    InputManager(Options* opts, RemappingLayout* rl);
     InputManager(const InputManager&) = delete;
     InputManager(InputManager&&) = delete;
     InputManager& operator=(const InputManager&) = delete;
@@ -30,7 +31,7 @@ public:
     InputAction& RegisterNewInput(const std::string& actionName, std::vector<int> defaultKeys, bool allowRemapping = true, KeybindContext context = KeybindContext::Gameplay);
     InputAction& GetVanillaInput(const std::string& actionName);
 
-    void createKeyboardAndMouseBinding(VanillaClientInputMappingFactory* inputs, KeyboardInputMapping* keyboard, MouseInputMapping* mouse, const std::string* buttonName, const std::string* keyName, FocusImpact impact = FocusImpact::Neutral);
+    void createKeyboardAndMouseBinding(KeyboardInputMapping* keyboard, MouseInputMapping* mouse, const std::string* buttonName, const std::string* keyName, FocusImpact impact = FocusImpact::Neutral);
 private:
     std::unordered_map<uint32_t, std::unique_ptr<InputAction>> mActions;
     std::vector<InputActionOptions> mCustomInputs;

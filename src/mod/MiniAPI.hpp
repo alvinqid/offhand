@@ -11,6 +11,7 @@
 #include "mc/client/renderer/game/LevelRendererPlayer.h"
 #include "mc/deps/input/InputMode.h"
 #include "mc/client/options/BaseOptions.h"
+#include "mc/client/input/RemappingLayout.h"
 
 #include "mc/client/game/ClientInstance.h"
 
@@ -22,7 +23,8 @@ class MiniAPI {
 
 public:
 
-    ClientInstance clientInstance;
+    ClientInstance* clientInstance;
+    RemappingLayout* rmpl;
 
     static MiniAPI& getInstance();
 

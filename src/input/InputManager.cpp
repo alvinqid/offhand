@@ -1,7 +1,8 @@
 #include "input/InputManager.hpp"
 
-Amethyst::InputManager::InputManager(Options *opts) {
+Amethyst::InputManager::InputManager(Options *opts, RemappingLayout rl) {
     mOptions = opts;
+    mLayout = rl;
 }
 
 Amethyst::InputManager::~InputManager() {
@@ -43,7 +44,7 @@ Amethyst::InputAction& Amethyst::InputManager::RegisterNewInput(const std::strin
     }
 
     // Add it to options which allows for it to be remapped, and is necessary for listeners
-    for (auto& layout : options->mKeyboardRemappings) {
+    for (auto& layout : options->mKeyboardRemappings.get()) {
         Keymapping keymapping("key." + actionName, defaultKeys, allowRemapping);
         layout->mKeymappings.emplace_back(keymapping);
         layout->mDefaultMappings.emplace_back(keymapping);
@@ -82,8 +83,8 @@ Amethyst::InputPassthrough Amethyst::InputManager::_handleButtonEvent(InputHandl
     return action._onButtonStateChange(button.state, focus, client.asInstance());
 }
 
-void Amethyst::InputManager::createKeyboardAndMouseBinding(VanillaClientInputMappingFactory* inputs, KeyboardInputMapping* keyboard, MouseInputMapping* mouse, const std::string* buttonName, const std::string* keyName, FocusImpact impact) {
-    Keymapping& mapping = *inputs->mKeyboardRemappingLayout.get()->getKeymappingByAction(*keyName);
+void Amethyst::InputManager::createKeyboardAndMouseBinding(KeyboardInputMapping* keyboard, MouseInputMapping* mouse, const std::string* buttonName, const std::string* keyName, FocusImpact impact) {
+    Keymapping& mapping = *mLayout->getKeymappingByAction(*keyName);
 
 	for(int key : mapping.mKeys) {
 		//key = mLayout->getAdjustedKey(key);
@@ -107,6 +108,6 @@ void Amethyst::InputManager::_registerKeyboardInputs(VanillaClientInputMappingFa
 
         std::string keyName = "key." + input.mActionName;
         std::string buttonName = "button." + input.mActionName;
-        createKeyboardAndMouseBinding(inputs, keyboard, mouse, &buttonName, &keyName);
+        createKeyboardAndMouseBinding(keyboard, mouse, &buttonName, &keyName);
     }
 }

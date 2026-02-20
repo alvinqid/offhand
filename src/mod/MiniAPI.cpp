@@ -30,6 +30,20 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
+    RemappingLayoutCtor,
+    HookPriority::Normal,
+    RemappingLayout,
+    &RemappingLayout::$ctor,
+    void*
+) {
+    void* self = origin();
+
+    rmpl = reinterpret_cast<RemappingLayout*>(self);
+
+    return self;
+}
+
+LL_AUTO_TYPE_INSTANCE_HOOK(
     ClientInstanceCtor,
     HookPriority::Normal,
     ClientInstance,
@@ -55,7 +69,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     origin(opts);
 
     if (clientInstance != nullptr) {
-        Amethyst::InputManager inputMgr(clientInstance->getOptionsPtr().get())
+        Amethyst::InputManager inputMgr(clientInstance->getOptionsPtr().get(), rmpl)
         EventInput(inputMgr);
     }
 }
