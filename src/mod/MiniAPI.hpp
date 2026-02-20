@@ -31,16 +31,16 @@ public:
     bool enable();
     bool disable();
 
-    void setClientInstance(ClientInstance* ci) { clientInstance = ci; }
-    void setRMPL(RemappingLayout* r) { rmpl = r; }
+    void setRMPL(RemappingLayout* ptr);
+    void setClientInstance(ClientInstance* ptr);
 
-    ClientInstance* getClientInstance() { return clientInstance; }
-    RemappingLayout* getRMPL() { return rmpl; }
+    ClientInstance* getClientInstance() { return mClientInstance; }
+    RemappingLayout* getRMPL() { return mRemapLayout; }
 
 private:
     ll::mod::NativeMod& mSelf;
-    ClientInstance* clientInstance = nullptr;
-    RemappingLayout* rmpl = nullptr;
+    ClientInstance* mClientInstance = nullptr;
+    RemappingLayout* mRemapLayout = nullptr;
 };
 
 } // namespace alvinqid

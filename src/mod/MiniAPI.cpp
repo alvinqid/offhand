@@ -40,8 +40,9 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 ) {
     void* self = origin();
 
-    MiniAPI::getInstance().getRMPL() =
-        reinterpret_cast<RemappingLayout*>(self);
+    MiniAPI::getInstance().setRMPL(
+    reinterpret_cast<RemappingLayout*>(self)
+    );
 
     return self;
 }
@@ -56,9 +57,10 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 ) {
     void* self = origin(args);
 
-    MiniAPI::getInstance().getClientInstance() =
-        reinterpret_cast<ClientInstance*>(self);
-
+    MiniAPI::getInstance().setClientInstance(
+        reinterpret_cast<ClientInstance*>(self)
+    );
+    
     return self;
 }
 
@@ -74,7 +76,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 
     auto& api = MiniAPI::getInstance();
     auto clientInstance = api.getClientInstance();
-    auto rmpl = api.getRMPL();
+    //auto rmpl = api.getRMPL();
 
     if (clientInstance && rmpl) {
         Amethyst::InputManager inputMgr(
@@ -83,6 +85,14 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 
         EventInput(inputMgr);
     }
+}
+
+void MiniAPI::setRMPL(RemappingLayout* ptr) {
+    mRemapLayout = ptr;
+}
+
+void MiniAPI::setClientInstance(ClientInstance* ptr) {
+    mClientInstance = ptr;
 }
 
 bool MiniAPI::load() {
