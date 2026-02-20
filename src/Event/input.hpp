@@ -1,7 +1,5 @@
 #pragma once
 
-namespace Amethyst {
-    class InputManager;
-}
+class InputManager;
 
-void EventInput(Amethyst::InputManager& inputManager);
+void EventInput(InputManager& inputManager);

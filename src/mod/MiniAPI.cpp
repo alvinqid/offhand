@@ -76,11 +76,11 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 
     auto& api = MiniAPI::getInstance();
     auto clientInstance = api.getClientInstance();
-    //auto rmpl = api.getRMPL();
+    auto rmpl = api.getRMPL();
 
     if (clientInstance) {
         Amethyst::InputManager inputMgr(
-            clientInstance->getOptionsPtr().get()
+            clientInstance->getOptionsPtr().get(),rmpl
         );
 
         EventInput(inputMgr);

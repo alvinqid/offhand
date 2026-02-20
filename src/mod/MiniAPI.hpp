@@ -7,7 +7,7 @@
 #include "ll/api/mod/RegisterHelper.h"
 
 #include "mc/client/input/VanillaClientInputMappingFactory.h"
-#include "input/InputManager.hpp"
+#include "mod/InputManager.hpp"
 #include "mc/client/renderer/game/LevelRendererPlayer.h"
 #include "mc/deps/input/InputMode.h"
 #include "mc/client/options/BaseOptions.h"
