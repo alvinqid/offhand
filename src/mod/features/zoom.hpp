@@ -17,6 +17,6 @@ namespace alvinqid {
         static void RegisterCustomInputs(InputManager inputManager);
     
     private:
-        static bool enabled = false;
+        static bool enabled;
     }
 } // namespace alvinqid
