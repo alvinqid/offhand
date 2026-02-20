@@ -78,7 +78,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     auto clientInstance = api.getClientInstance();
     //auto rmpl = api.getRMPL();
 
-    if (clientInstance && rmpl) {
+    if (clientInstance) {
         Amethyst::InputManager inputMgr(
             clientInstance->getOptionsPtr().get()
         );
