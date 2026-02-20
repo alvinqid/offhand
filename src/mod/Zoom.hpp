@@ -1,5 +1,5 @@
 #include "mod/api/InputManager.hpp"
-
+#include "mod/features/zoom.hpp"
 #include "mc/client/options/Options.h"
 #include "mc/client/options/IOptions.h"
 #include "mc/client/renderer/game/LevelRendererPlayer.h"
