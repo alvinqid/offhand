@@ -81,7 +81,7 @@ InputPassthrough InputManager::_handleButtonEvent(InputHandler* handler, const B
     if (it == mActions.end()) return InputPassthrough::Passthrough;
 
     const InputAction& action = *it->second.get();
-    return action._onButtonStateChange(button.state, focus, client.asInstance());
+    return action._onButtonStateChange(button.state, focus, *alvinqid::Zoom::getInstance().getProperty().client);
 }
 
 void InputManager::_registerKeyboardInputs(VanillaClientInputMappingFactory* inputs, KeyboardInputMapping* keyboard, MouseInputMapping* mouse, KeybindContext context)

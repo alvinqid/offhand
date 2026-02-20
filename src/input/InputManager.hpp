@@ -8,6 +8,7 @@
 #include "mc/client/input/VanillaClientInputMappingFactory.h"
 #include "mc/deps/input/KeyboardInputMapping.h"
 #include "mc/deps/input/MouseInputMapping.h"
+#include "mc/deps/input/Keymapping.h"
 #include "mod/Zoom.hpp"
 #include "mc/client/input/KeyboardRemappingLayout.h"
 #include "mc/deps/input/ButtonEventData.h"
