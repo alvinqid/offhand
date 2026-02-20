@@ -1,6 +1,17 @@
 #include "MiniAPI/input/InputAction.hpp"
 #include "mc/deps/input/InputHandler.h"
 
+int32_t StringToNameId(const std::string& str)
+{
+    int hashed = -2128831035;
+
+    for (char c : str) {
+        hashed = 16777619 * (hashed ^ c);
+    }
+
+    return hashed;
+}
+
 class ClientInstance;
 
 MiniAPI::InputAction::InputAction(const std::string& actionName) 

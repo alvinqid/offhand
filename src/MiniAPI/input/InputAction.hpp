@@ -4,6 +4,11 @@
 #include <functional>
 #include "mc/deps/input/InputHandler.h"
 #include "mc/client/game/IClientInstance.h"
+#include "mc/deps/input/enums/FocusImpact.h"
+#include "mc/client/game/ClientInstance.h"
+#include <cstdint>
+
+int32_t StringToNameId(const std::string& str);
 
 namespace MiniAPI {
 
