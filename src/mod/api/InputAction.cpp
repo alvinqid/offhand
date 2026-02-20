@@ -18,13 +18,13 @@ InputAction::InputAction(const std::string& actionName)
 }
 
 void InputAction::addButtonDownHandler(
-    std::function<InputPassthrough(FocusImpact, ClientInstance&)> handler)
+    std::function<InputPassthrough(FocusImpact)> handler)
 {
     mButtonDownHandlers.emplace_back(std::move(handler));
 }
 
 void InputAction::addButtonUpHandler(
-    std::function<InputPassthrough(FocusImpact, ClientInstance&)> handler)
+    std::function<InputPassthrough(FocusImpact)> handler)
 {
     mButtonUpHandlers.emplace_back(std::move(handler));
 }
@@ -34,15 +34,15 @@ InputPassthrough InputAction::_onButtonStateChange(
     FocusImpact focus) const
 {
     const auto& handlers =
-        (state == ButtonState::Down) ? mButtonDownHandlers :
-        (state == ButtonState::Up)   ? mButtonUpHandlers   :
-                                       std::vector<std::function<InputPassthrough(FocusImpact)>>{};
+        (state == ButtonState::Down)
+        ? mButtonDownHandlers
+        : mButtonUpHandlers;
 
     bool passToVanilla = true;
 
     for (const auto& handler : handlers)
     {
-        const InputPassthrough result = handler(focus);
+        InputPassthrough result = handler(focus, client);
 
         if (result == InputPassthrough::Consume)
             return InputPassthrough::Consume;

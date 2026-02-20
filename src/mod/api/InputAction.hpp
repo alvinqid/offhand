@@ -66,7 +66,7 @@ class InputAction {
 private:
     uint32_t mNameHash{};
 
-    using Handler = std::function<InputPassthrough(FocusImpact, ClientInstance&)>;
+    using Handler = std::function<InputPassthrough(FocusImpact)>;
 
     std::vector<Handler> mButtonDownHandlers;
     std::vector<Handler> mButtonUpHandlers;
