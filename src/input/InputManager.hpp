@@ -20,7 +20,7 @@ class InputManager {
 public:
     Options* mOptions;
     
-    InputManager(AmethystContext* amethyst);
+    InputManager(Options* opts);
     InputManager(const InputManager&) = delete;
     InputManager(InputManager&&) = delete;
     InputManager& operator=(const InputManager&) = delete;
