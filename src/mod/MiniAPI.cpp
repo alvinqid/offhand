@@ -1,5 +1,4 @@
 #include "mod/MiniAPI.hpp"
-#include "Event/input.hpp"
 
 namespace alvinqid {
 
@@ -27,7 +26,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     float,
     InputMode inputMode
 ) {
-    return BaseOptions_getSensitivity(origin(inputMode), inputMode);
+    return BaseOptions_getSensitivity(origin(inputMode));
 }
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
@@ -35,14 +34,14 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     HookPriority::Normal,
     ClientInstance,
     &ClientInstance::$ctor,
-    float,
+    void*,
     ClientInstanceArguments&& args
 ) {
     void* self = origin(args);
     
     ClientInstance* ci = reinterpret_cast<ClientInstance*>(self);
     ClientInstance& clientInstance = *ci;
-    mInputManager = std::make_unique<InputManager>(ci.getOptionsPtr().get());
+    mInputManager = std::make_unique<MiniAPI::InputManager>(ci.getOptionsPtr().get());
     
     return self;
 }
@@ -57,9 +56,6 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 ) {
     void* self = origin(opts);
     
-    ClientInstance* ci = reinterpret_cast<ClientInstance*>(self);
-    ClientInstance& clientInstance = *ci;
-    mInputManager = std::make_unique<InputManager>(ci.getOptionsPtr().get());
     EventInput(mInputManager);
     
     return self;

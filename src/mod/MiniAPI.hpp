@@ -12,6 +12,8 @@
 #include "mc/deps/input/InputMode.h"
 #include "mc/client/options/BaseOptions.h"
 
+#include "Event/input.hpp"
+
 namespace alvinqid {
 
 class MiniAPI {
