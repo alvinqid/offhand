@@ -16,31 +16,25 @@
 
 namespace alvinqid {
 
-class MiniAPIMOD {
+class MiniAPI {
 
 public:
-    static MiniAPIMOD& getInstance();
 
-    MiniAPIMOD() : mSelf(*ll::mod::NativeMod::current()) {}
+    ClientInstance clientInstance;
+
+    static MiniAPI& getInstance();
+
+    MiniAPI() : mSelf(*ll::mod::NativeMod::current()) {}
 
     [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
 
     bool load();
     bool enable();
     bool disable();
-    
-    MiniAPI::InputManager* getInputManager() const {
-        return mInputManager.get();
-    }
-
-    void setInputManager(std::unique_ptr<MiniAPI::InputManager> mgr) {
-        mInputManager = std::move(mgr);
-    }
     //bool unload();
 
 private:
     ll::mod::NativeMod& mSelf;
-    std::unique_ptr<MiniAPI::InputManager> mInputManager;
 };
 
 } // namespace alvinqid

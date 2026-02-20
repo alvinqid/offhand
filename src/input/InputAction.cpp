@@ -1,5 +1,6 @@
-#include "MiniAPI/input/InputAction.hpp"
-#include "mc/deps/input/InputHandler.h"
+#include "input/InputAction.hpp"
+
+class ClientInstance;
 
 int32_t StringToNameId(const std::string& str)
 {
@@ -12,22 +13,20 @@ int32_t StringToNameId(const std::string& str)
     return hashed;
 }
 
-class ClientInstance;
-
-MiniAPI::InputAction::InputAction(const std::string& actionName) 
+Amethyst::InputAction::InputAction(const std::string& actionName) 
 	: mNameHash(StringToNameId("button." + actionName)), mButtonDownHandlers(), mButtonUpHandlers() {}
 
-void MiniAPI::InputAction::addButtonDownHandler(std::function<InputPassthrough(FocusImpact, ClientInstance&)> handler)
+void Amethyst::InputAction::addButtonDownHandler(std::function<InputPassthrough(FocusImpact, ClientInstance&)> handler)
 {
     mButtonDownHandlers.push_back(handler);
 }
 
-void MiniAPI::InputAction::addButtonUpHandler(std::function<InputPassthrough(FocusImpact, ClientInstance&)> handler)
+void Amethyst::InputAction::addButtonUpHandler(std::function<InputPassthrough(FocusImpact, ClientInstance&)> handler)
 {
 	mButtonUpHandlers.push_back(handler);  
 }
 
-MiniAPI::InputPassthrough MiniAPI::InputAction::_onButtonStateChange(ButtonState state, FocusImpact focus, ClientInstance& client) const
+Amethyst::InputPassthrough Amethyst::InputAction::_onButtonStateChange(ButtonState state, FocusImpact focus, ClientInstance& client) const
 {
     bool shouldPassToVanilla = true;
 

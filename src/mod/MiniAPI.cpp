@@ -2,8 +2,8 @@
 
 namespace alvinqid {
 
-MiniAPIMOD& MiniAPIMOD::getInstance() {
-    static MiniAPIMOD instance;
+MiniAPI& MiniAPI::getInstance() {
+    static MiniAPI instance;
     return instance;
 }
 
@@ -39,13 +39,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 ) {
     void* self = origin(args);
 
-    ClientInstance* ci = reinterpret_cast<ClientInstance*>(self);
-
-    MiniAPIMOD::getInstance().setInputManager(
-        std::make_unique<MiniAPI::InputManager>(
-            ci->getOptionsPtr().get()
-        )
-    );
+    clientInstance = reinterpret_cast<ClientInstance*>(self);
 
     return self;
 }
@@ -60,27 +54,27 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 ) {
     origin(opts);
 
-    auto* inputMgr = MiniAPIMOD::getInstance().getInputManager();
-    if (inputMgr) {
-        EventInput(*inputMgr);
+    if (clientInstance != nullptr) {
+        Amethyst::InputManager inputMgr(clientInstance->getOptionsPtr().get())
+        EventInput(inputMgr);
     }
 }
 
-bool MiniAPIMOD::load() {
+bool MiniAPI::load() {
     getSelf().getLogger().debug("Loading...");
     return true;
 }
 
-bool MiniAPIMOD::enable() {
+bool MiniAPI::enable() {
     getSelf().getLogger().debug("Enabling...");
     return true;
 }
 
-bool MiniAPIMOD::disable() {
+bool MiniAPI::disable() {
     getSelf().getLogger().debug("Disabling...");
     return true;
 }
 
 } // namespace alvinqid
 
-LL_REGISTER_MOD(alvinqid::MiniAPIMOD, alvinqid::MiniAPIMOD::getInstance());
+LL_REGISTER_MOD(alvinqid::MiniAPI, alvinqid::MiniAPI::getInstance());
