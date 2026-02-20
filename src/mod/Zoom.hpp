@@ -4,6 +4,8 @@
 #include "mc/client/options/IOptions.h"
 #include "mc/client/renderer/game/LevelRendererPlayer.h"
 
+#include "mc/client/input/RemappingLayout.h"
+
 #include "ll/api/mod/NativeMod.h"
 #include "ll/api/mod/RegisterHelper.h"
 #include "ll/api/memory/Hook.h"
