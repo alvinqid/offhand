@@ -4,7 +4,7 @@
 
 void EventInput(InputManager& inputManager) {
     InputAction& zoomKeybind =
-        inputManager.RegisterNewInput("zoom", {'C'}, true, KeybindContext::Gameplay);
+        inputManager.registerNewInput("zoom", {'C'}, true, KeybindContext::Gameplay);
 
     zoomKeybind.addButtonDownHandler([](FocusImpact focus, ClientInstance& client) {
         setEnabled(true);
