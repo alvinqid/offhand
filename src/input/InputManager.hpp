@@ -23,7 +23,7 @@ public:
     InputManager(InputManager&&) = delete;
     InputManager& operator=(const InputManager&) = delete;
     InputManager& operator=(InputManager&&) = delete;
-    ~InputManager();
+    //~InputManager();
 
     InputAction& registerNewInput(const std::string& actionName, std::vector<int> const& defaultKeys, bool allowRemapping = true, KeybindContext context = KeybindContext::Gameplay);
     InputAction& getVanillaInput(const std::string& actionName);

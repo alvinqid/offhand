@@ -7,7 +7,7 @@
 
 InputManager::InputManager() {}
 
-InputManager::~InputManager() {
+/*InputManager::~InputManager() {
     for (auto& action : mCustomInputs) {
         auto mapping = alvinqid::Zoom::getInstance().getProperty().keyboardLayout;
 
@@ -26,7 +26,7 @@ InputManager::~InputManager() {
 
     mCustomInputs.clear();
     mActions.clear();
-}
+}*/
 
 InputAction& InputManager::registerNewInput(const std::string& actionName, std::vector<int> const& defaultKeys, bool allowRemapping, KeybindContext context)
 {
