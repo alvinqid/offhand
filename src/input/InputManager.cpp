@@ -10,14 +10,18 @@ InputManager::InputManager() {}
 InputManager::~InputManager() {
     for (auto& action : mCustomInputs) {
         auto mapping = alvinqid::Zoom::getInstance().getProperty().keyboardLayout;
+
+        auto& vec = mapping->mKeymappings.get();
+
         auto newEnd = std::remove_if(
-             mapping->mKeymappings.begin(),
-             mapping->mKeymappings.end(),
-             [&action](const Keymapping& keymapping)
+            vec.begin(),
+            vec.end(),
+            [&action](const Keymapping& keymapping)
             {
-                return keymapping.mAction == std::string("key." + action.mActionName);
+                return keymapping.mAction == ("key." + action.mActionName);
             });
-        mapping->mKeymappings.erase(newEnd, mapping->mKeymappings.end());
+
+        vec.erase(newEnd, vec.end());
     }
 
     mCustomInputs.clear();
@@ -42,9 +46,9 @@ InputAction& InputManager::registerNewInput(const std::string& actionName, std::
 
     // Add it to options which allows for it to be remapped, and is necessary for listeners
     auto layout = alvinqid::Zoom::getInstance().getProperty().keyboardLayout;
-    Keymapping keymapping("key." + actionName, defaultKeys, allowRemapping);
-    layout->mKeymappings.emplace_back(keymapping);
-    layout->mDefaultMappings.emplace_back(keymapping);
+    Keymapping keymapping("key." + actionName, defaultKeys);
+    layout->mKeymappings.get().emplace_back(keymapping);
+    layout->mDefaultMappings.get().emplace_back(keymapping);
 
 
     // Add to custom inputs so it can be registered in other places by the runtime

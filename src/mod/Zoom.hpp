@@ -18,7 +18,7 @@ namespace alvinqid {
     public:
         static Zoom& getInstance();
         Property& getProperty();
-        InputManager& getInputManager() const { return mInputManager };
+        InputManager getInputManager() const { return mInputManager };
     
         Zoom() : mSelf(*ll::mod::NativeMod::current()) {};
     
