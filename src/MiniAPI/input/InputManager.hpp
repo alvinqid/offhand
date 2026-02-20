@@ -8,6 +8,7 @@
 #include "MiniAPI/input/InputAction.hpp"
 #include "mod/MiniAPI.hpp"
 #include "mc/client/game/ClientInstance.h"
+#include <unordered_map>
 
 class VanillaClientInputMappingFactory;
 class KeyboardInputMapping;
