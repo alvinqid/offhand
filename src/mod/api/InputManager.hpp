@@ -12,7 +12,7 @@
 #include "mc/deps/input/KeyboardInputMapping.h"
 #include "mc/deps/input/MouseInputMapping.h"
 #include "mc/client/input/Keymapping.h"
-#include "mc/client/input/RemappedLayout.h"
+#include "mc/client/input/RemappingLayout.h"
 #include "mc/client/input/VanillaClientInputMappingFactory.h"
 #include "mc/client/game/IClientInstance.h"
 #include "mc/client/game/ClientInstance.h"
