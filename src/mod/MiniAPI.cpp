@@ -38,11 +38,15 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     ClientInstanceArguments&& args
 ) {
     void* self = origin(args);
-    
+
     ClientInstance* ci = reinterpret_cast<ClientInstance*>(self);
-    ClientInstance& clientInstance = *ci;
-    mInputManager = std::make_unique<MiniAPI::InputManager>(ci.getOptionsPtr().get());
-    
+
+    MiniAPIMOD::getInstance().setInputManager(
+        std::make_unique<MiniAPI::InputManager>(
+            ci->getOptionsPtr().get()
+        )
+    );
+
     return self;
 }
 
@@ -54,11 +58,12 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     void,
     IOptions* opts
 ) {
-    void* self = origin(opts);
-    
-    EventInput(mInputManager);
-    
-    return self;
+    origin(opts);
+
+    auto* inputMgr = MiniAPIMOD::getInstance().getInputManager();
+    if (inputMgr) {
+        EventInput(inputMgr);
+    }
 }
 
 bool MiniAPIMOD::load() {

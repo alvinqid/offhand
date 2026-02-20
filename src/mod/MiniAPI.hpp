@@ -28,6 +28,14 @@ public:
     bool load();
     bool enable();
     bool disable();
+    
+    MiniAPI::InputManager* getInputManager() const {
+        return mInputManager.get();
+    }
+
+    void setInputManager(std::unique_ptr<MiniAPI::InputManager> mgr) {
+        mInputManager = std::move(mgr);
+    }
     //bool unload();
 
 private:
